@@ -22,7 +22,7 @@ class HeadHunterAPI(BaseVacancyAPI):
             raise ConnectionError
         else:
             return [
-                self.parse_vacancy(item) for item in response.json()['items']
+                self.parse_vacancy(item) for item in response.json()['items'] if item['salary']['currency'] == 'RUR'
             ]
 
     def parse_vacancy(self, data: dict) -> Vacancy:

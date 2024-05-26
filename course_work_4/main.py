@@ -5,5 +5,5 @@ hh_api = HeadHunterAPI()
 hh_vacancies = hh_api.get_vacancies('python')
 
 for i, vacan in enumerate(hh_vacancies):
-    print(i, vacan, sep='\n')
+    print(i, repr(vacan), sep='\n')
 
