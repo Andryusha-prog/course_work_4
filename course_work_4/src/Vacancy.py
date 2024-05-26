@@ -13,6 +13,9 @@ class Vacancy:
         return f'{self.name}, {self.url}, {self.sal_from}, {self.sal_to}, {self.requirement}'
 
     def __lt__(self, other):
+        """
+        Метод определяет является ли зарплата указанная в self меньше, чем в other
+        """
         if self.sal_from is None and other.sal_from is None:
             if self.sal_to is None and other.sal_to is not None:
                 return True
@@ -32,6 +35,9 @@ class Vacancy:
             return self.sal_from < other.sal_from
 
     def __gt__(self, other):
+        """
+        Метод определяет является ли зарплата указанная в self больше, чем в other
+        """
         if self.sal_from is None and other.sal_from is None:
             if self.sal_to is None and other.sal_to is not None:
                 return False
@@ -51,4 +57,7 @@ class Vacancy:
             return self.sal_from > other.sal_from
 
     def __eq__(self, other):
+        """
+        Метод проверяет равенство зарплат двух экземпляров класса
+        """
         return self.sal_from == other.sal_from and self.sal_to == other.sal_to

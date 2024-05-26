@@ -1,0 +1,9 @@
+[
+  {
+    "name": "name2",
+    "url": "url2",
+    "salary_from": 20,
+    "salary_to": 30,
+    "requirement": "test_text"
+  }
+]

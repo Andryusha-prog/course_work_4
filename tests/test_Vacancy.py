@@ -2,6 +2,9 @@ from course_work_4.src.Vacancy import Vacancy
 
 
 def test_vacancy_equal_data():
+    '''
+    тест на проверку равентсва зарплат
+    '''
     assert (Vacancy('test', 'test', None, None, 'test') ==
             Vacancy('test1', 'test1', None, None, 'test'))
 
@@ -13,6 +16,9 @@ def test_vacancy_equal_data():
 
 
 def test_vacancy_lt_data():
+    '''
+    тест на проверку неравентсва зарплат self < other
+    '''
     assert (Vacancy('test', 'test', None, None, 'test') <
            Vacancy('test1', 'test1', None, None, 'test')) is False
 
@@ -33,6 +39,9 @@ def test_vacancy_lt_data():
 
 
 def test_vacancy_gt_data():
+    '''
+    тест на проверку неравентсва зарплат self > other
+    '''
     assert (Vacancy('test', 'test', None, None, 'test') >
            Vacancy('test1', 'test1', None, None, 'test')) is False
 

@@ -5,6 +5,9 @@ from course_work_4.src.Vacancy import Vacancy
 
 
 class HeadHunterAPI(BaseVacancyAPI):
+    """
+    Класс получения данных от HH с помощью API
+    """
     def get_vacancies(self, search: str) -> list[Vacancy]:
         url = 'https://api.hh.ru/vacancies'
 
@@ -17,6 +20,7 @@ class HeadHunterAPI(BaseVacancyAPI):
         response = requests.get(url, params=params, timeout=100)
 
         if not response.ok:
+            #Если нет ответа от сервера - прокидываем исключение
             raise ConnectionError
         else:
             return [
