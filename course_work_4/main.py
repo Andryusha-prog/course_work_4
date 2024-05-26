@@ -7,6 +7,7 @@ hh_api = HeadHunterAPI()
 path = os.path.join('data', 'vacancies.json')
 conn_js = ConnectorJSON(path)
 
+#Приветственное сообщение при запуске программы
 welcome_message = '''
 Добро пожаловать в программу отображения вакансий сайта HH.ru.
 Данная программа вможет выполнять следующие действия (введите цифру для выбора):
@@ -20,16 +21,17 @@ while True:
     user_input = input()
 
     if user_input.isdigit():
-        if int(user_input) == 0:
+        user_input_digit = int(user_input)
+        if int(user_input_digit) == 0:
             break
-        elif int(user_input) == 1:
+        elif int(user_input_digit) == 1:
             user_key = input('input key word: ')
-            hh_vacancies = hh_api.get_vacancies(user_key)
+            hh_vacancies = hh_api.get_vacancies(user_key) # функция запроса данных вакансии от HH.ru
             for vacancy in hh_vacancies:
-                conn_js.add_vacancy_to_file(vacancy)
+                conn_js.add_vacancy_to_file(vacancy) #функция добавления вакансии в файл
 
-        elif int(user_input) == 2:
-            vacancies = conn_js.get_vacancies_from_file()
+        elif int(user_input_digit) == 2:
+            vacancies = conn_js.get_vacancies_from_file() #функция формирования списка вакансий из файла
             if len(vacancies) == 0:
                 print('Файл пустой! Сначала необходимо сформировать файл!')
                 continue
