@@ -1,31 +1,41 @@
 import os.path
 
-from course_work_4.src.Vacancy import Vacancy
 from course_work_4.src.hh_api import HeadHunterAPI
 from course_work_4.src.json_con import ConnectorJSON
 
 hh_api = HeadHunterAPI()
-
-hh_vacancies = hh_api.get_vacancies('python')
-
 path = os.path.join('data', 'vacancies.json')
-
 conn_js = ConnectorJSON(path)
 
-#for i, vacan in enumerate(hh_vacancies):
-#    print(i, repr(vacan), sep='\n')
+welcome_message = '''
+Добро пожаловать в программу отображения вакансий сайта HH.ru.
+Данная программа вможет выполнять следующие действия (введите цифру для выбора):
+0 - Выход из программы
+1 - Формирование Файла с данными вакансии сайта HH.ru по ключевому слову
+2 - Вывод первых N вакансий с лучшей предложенной зарплатой
+'''
 
-vac1 = Vacancy('name', 'url', 10, 20, 'test_text')
+while True:
+    print(welcome_message)
+    user_input = input()
 
-vac2 = Vacancy('name2', 'url2', 20, 30, 'test_text')
-vac3 = Vacancy('name3', 'url3', 30, 40, 'test_text')
-conn_js.add_vacancy_to_file(vac1)
-conn_js.add_vacancy_to_file(vac2)
-conn_js.add_vacancy_to_file(vac3)
+    if user_input.isdigit():
+        if int(user_input) == 0:
+            break
+        elif int(user_input) == 1:
+            user_key = input('input key word: ')
+            hh_vacancies = hh_api.get_vacancies(user_key)
+            for vacancy in hh_vacancies:
+                conn_js.add_vacancy_to_file(vacancy)
 
-print(conn_js.get_vacancies_from_file())
-
-conn_js.delete_vacancy(vac1)
-conn_js.delete_vacancy(vac3)
-
-print(conn_js.get_vacancies_from_file())
+        elif int(user_input) == 2:
+            vacancies = conn_js.get_vacancies_from_file()
+            if len(vacancies) == 0:
+                print('Файл пустой! Сначала необходимо сформировать файл!')
+                continue
+            else:
+                user_num = int(input('Введите количество топ вакансий:'))
+                for vac in sorted(vacancies, key=lambda x: x.sal_from, reverse=True)[:user_num]:
+                    print(vac)
+    else:
+        continue

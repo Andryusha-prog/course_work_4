@@ -2,8 +2,8 @@ class Vacancy:
     def __init__(self, name, url, sal_from, sal_to, requirement):
         self.name = name
         self.url = url
-        self.sal_from = sal_from
-        self.sal_to = sal_to
+        self.sal_from = sal_from if sal_from else 0
+        self.sal_to = sal_to if sal_to else 0
         self.requirement = requirement
 
     def __repr__(self):

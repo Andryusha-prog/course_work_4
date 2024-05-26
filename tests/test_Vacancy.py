@@ -37,6 +37,9 @@ def test_vacancy_lt_data():
     assert (Vacancy('test', 'test', 1000, 2000, 'test') <
             Vacancy('test1', 'test1', 1000, 3000, 'test'))
 
+    assert (Vacancy('test', 'test', 1000, 2000, 'test') <
+            Vacancy('test1', 'test1', None, 3000, 'test')) is False
+
 
 def test_vacancy_gt_data():
     '''
