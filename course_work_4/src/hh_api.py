@@ -1,5 +1,3 @@
-from typing import List
-
 import requests
 
 from course_work_4.src.BaseVacancyAPI import BaseVacancyAPI
@@ -25,7 +23,8 @@ class HeadHunterAPI(BaseVacancyAPI):
                 self.parse_vacancy(item) for item in response.json()['items'] if item['salary']['currency'] == 'RUR'
             ]
 
-    def parse_vacancy(self, data: dict) -> Vacancy:
+    @staticmethod
+    def parse_vacancy(data: dict) -> Vacancy:
         return Vacancy(
             name=data['name'],
             url=data['alternate_url'],
