@@ -38,7 +38,7 @@ class ConnectorJSON(FileConnector):
             self.save_func(vacancies_dict)
 
     @staticmethod
-    def parse_dict_to_class(inp_data: list) -> list[Vacancy]:
+    def parse_dict_to_class(inp_data: list[dict]) -> list[Vacancy]:
         """
         Функция преобразует список словарей в список классов вакансии, что необходимо при чтении из файла
         """
